@@ -1,9 +1,14 @@
 import { App } from "vue";
+import { State } from "@/types";
+import { setState } from "@/state";
+import { bionic } from "@/directives/bionic";
 
-export interface Config {}
-
-export default (config: Config) => ({
+export default (config?: Partial<State>) => ({
     install: (app: App) => {
+        if (config) {
+            setState(config);
+        }
+        app.directive("bionic", bionic);
         // TODO assign directive
     },
 });

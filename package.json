@@ -6,16 +6,16 @@
     "files": [
         "dist"
     ],
-    "main": "./dist/index.mjs",
-    "module": "./dist/index.mjs",
+    "main": "./dist/vue-bionic.js",
+    "module": "./dist/vue-bionic.js",
     "exports": {
         ".": {
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.mjs"
+            "import": "./dist/vue-bionic.js",
+            "require": "./dist/vue-bionic.js"
         }
     },
-    "unpkg": "./dist/index.mjs",
-    "jsdelivr": "./dist/index.mjs",
+    "unpkg": "./dist/vue-bionic.js",
+    "jsdelivr": "./dist/vue-bionic.js",
     "types": "./dist/index.d.ts",
     "scripts": {
         "dev": "vite",

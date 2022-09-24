@@ -1,13 +1,11 @@
-import { defineConfig } from 'vite'
+import { defineConfig, LibraryFormats } from "vite";
 import { resolve } from "path";
-import vue from '@vitejs/plugin-vue'
+import vue from "@vitejs/plugin-vue";
 
 const resolvePath = (str: string) => resolve(__dirname, str);
 
 export default defineConfig({
-    plugins: [
-        vue(),
-    ],
+    plugins: [vue()],
     resolve: {
         alias: {
             "@": resolvePath("./src"),
@@ -17,6 +15,7 @@ export default defineConfig({
         lib: {
             entry: resolvePath("src/index.ts"),
             name: "index",
+            formats: [<LibraryFormats>"es"],
         },
         rollupOptions: {
             external: ["vue"],
@@ -33,4 +32,4 @@ export default defineConfig({
         // Leave minification up to applications.
         minify: false,
     },
-})
+});

@@ -1,10 +1,8 @@
-type SeparatorTags = [string, string];
+import { getState } from "@/state";
 
-export type Options = {
-    separatorTags?: SeparatorTags;
-};
+const { separatorTags } = getState();
 
-const formatText = (text: string, separatorTags: SeparatorTags) => {
+const formatText = (text: string) => {
     let halfLengthInt: number;
     if (text.length <= 3) {
         halfLengthInt = 1;
@@ -19,26 +17,24 @@ const formatText = (text: string, separatorTags: SeparatorTags) => {
     return result;
 };
 
-const formatWord = (text: string, separatorTags: SeparatorTags) => {
+const formatWord = (text: string) => {
     const splitText = text.split("-");
     if (splitText.length > 1) {
-        return splitText.map((st) => formatText(st, separatorTags));
+        return splitText.map((st) => formatText(st));
     }
 
-    return [formatText(text, separatorTags)];
+    return [formatText(text)];
 };
 
-export const bionicText = (text: string, options?: Options) => {
-    const separatorTags = options?.separatorTags || ["<strong>", "</strong>"];
-
-    if (!text?.length) {
+export const bionicText = (text: string) => {
+    if (text.trim().length === 0) {
         return "";
     }
 
     const splitText = text.split(" ");
     const resultArray: string[] = [];
 
-    splitText.forEach((txt) => resultArray.push(...formatWord(txt, separatorTags)));
+    splitText.forEach((txt) => resultArray.push(...formatWord(txt)));
 
     return resultArray.join(" ");
 };
